@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  width: 100%;
+  height: 100vh;
+}
+
+*,
+*::after,
+*::before,
+body,
+button,
+textarea,
+input {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style: none;
+}
