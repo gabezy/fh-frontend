@@ -2,8 +2,11 @@ import React, { FormEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { axiosApi } from "../service/axios";
 import { SignIn } from "@phosphor-icons/react";
+import { UserContext } from "../context/UserContext";
 
 export const Login = () => {
+  const { setId, setUsername } = React.useContext(UserContext);
+
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [isLogin, setIsLogin] = React.useState(false);
@@ -21,6 +24,8 @@ export const Login = () => {
         JSON.stringify(loginData)
       );
       if (resp.status === 200) {
+        setId(resp.data.id);
+        setUsername(resp.data.username);
         setIsLogin(true);
         navigate("/home");
       }
