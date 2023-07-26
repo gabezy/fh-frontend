@@ -1,4 +1,5 @@
 import React, { ReactNode } from "react";
+import { usePersistedState } from "../hooks/usePersistedState";
 
 type UserContextProps = {
   id: string;
@@ -14,7 +15,8 @@ type UserContextProviderProps = {
 };
 
 export const UserContextProvider = ({ children }: UserContextProviderProps) => {
-  const [id, setId] = React.useState("");
+  const userId = localStorage.getItem("userId") ?? "";
+  const [id, setId] = usePersistedState<string>("userId", userId);
   const [username, setUsername] = React.useState("");
 
   return (
