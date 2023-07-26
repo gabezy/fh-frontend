@@ -7,15 +7,15 @@ import { UserContext } from "../context/UserContext";
 export const Login = () => {
   const { setId, setUsername } = React.useContext(UserContext);
 
-  const [email, setEmail] = React.useState("");
+  const [login, setlogin] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [isLogin, setIsLogin] = React.useState(false);
 
   const navigate = useNavigate();
 
-  const login = async () => {
+  const postLogin = async () => {
     const loginData = {
-      email,
+      login,
       password,
     };
     try {
@@ -34,9 +34,9 @@ export const Login = () => {
     }
   };
 
-  const handleLogin = (event: FormEvent) => {
+  const handleLogin = async (event: FormEvent) => {
     event.preventDefault();
-    login();
+    await postLogin();
   };
 
   return (
@@ -53,8 +53,8 @@ export const Login = () => {
             type="text"
             id="email"
             name="email"
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
+            value={login}
+            onChange={(event) => setlogin(event.target.value)}
             className="border-2 border-blue-600"
             required
           />
